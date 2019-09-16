@@ -1,6 +1,6 @@
 package DataStructures.pro0914SingleLinkedList;
 
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
+import java.util.Stack;
 
 /**
  * @Author DreamYee
@@ -26,10 +26,17 @@ public class SingleLinkedListDemo {
 
         System.out.println("原来链表的情况");
         singleLinkedList.list();
+
+        /*
         //反转链表
         System.out.println("反转单链表：");
         reverseList(singleLinkedList.getHead());
         singleLinkedList.list();
+        */
+
+        System.out.println("测试逆序打印单链表，没有改变链表的结构");
+        reversePrint(singleLinkedList.getHead());
+
         /*
         //加入按照编号的顺序
         singleLinkedList.addByOrder(hero1);
@@ -61,9 +68,25 @@ public class SingleLinkedListDemo {
         HeroNode res=findLastIndexNode(singleLinkedList.getHead(),3);
         System.out.println("res="+res);
         */
+    }
 
-        //反转链表
-
+    //使用方式2实现逆序打印链表（栈：先进后出）
+    public static void reversePrint(HeroNode head){
+        if(head.next==null){
+            return;//空链表，无法打印
+        }
+        //创建一个栈，将各个节点压入栈
+        Stack<HeroNode> stack=new Stack<HeroNode>();
+        HeroNode cur=head.next;
+        //将链表的所有节点压入栈
+        while(cur!=null){
+            stack.push(cur);
+            cur=cur.next;//cur后移
+        }
+        //将栈中的节点打印
+        while (stack.size()>0){
+            System.out.println(stack.pop());//stack的特点是先进后出
+        }
     }
 
     //将单链表反转（Tencent面试题）
