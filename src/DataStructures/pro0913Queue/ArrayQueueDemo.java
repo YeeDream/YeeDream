@@ -85,6 +85,7 @@ class ArrayQueue {
         return rear == front;
     }
 
+
     //添加数据到队列
     public void addQueue(int n) {
         //判断队列是否满
@@ -95,7 +96,6 @@ class ArrayQueue {
         rear++;//让rear后移
         arr[rear] = n;
     }
-
     //获取队列数据，数据出队列
     public int getQueue() {
         //判断队列是否空
