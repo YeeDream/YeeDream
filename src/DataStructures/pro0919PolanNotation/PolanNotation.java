@@ -9,8 +9,22 @@ import java.util.Stack;
  * @Create 2019/09/19  19:13
  */
 public class PolanNotation {
+
+
+
     public static void main(String[] args) {
-      //先定义一个逆波兰表达式
+
+        //要完成将中缀表达式转化为后缀表达式的功能
+        //说明
+        //1. 1+((2+3)*4-5   =>1 2 3 + 4 * + 5 -
+        //2.直接对一个字符串进行操作不方便，先将1+((2+3)*4-5转为中缀表达式的List
+        //即把1+((2+3)*4-5转为ArrayList[1,+,(,(,2,+,3,),*,4,),-,5]
+        String expression="1+((2+3)*4-5";
+        List<String> infixExpressionList=toInfixExpressionList(expression);
+        System.out.println(infixExpressionList);
+
+        /**
+        //先定义一个逆波兰表达式
         //(3+4)*5-6  =>  3 4 + 5 * 6 -
         //为了表达方便，数字跟符号用空格隔开
         //(30+4)*20-21  =>   30 4 + 20 * 21 -
@@ -24,6 +38,32 @@ public class PolanNotation {
 
         int res=calculate(rpnList);
         System.out.println("计算的结果是："+res);
+         */
+    }
+
+    //方法：将中缀表达式转化为对应的List
+    //s = "1+((2+3)*4-5"
+    public static List<String> toInfixExpressionList(String s){
+        //定义一个List，存放中缀表达式对应的内容
+        List<String> ls=new ArrayList<String>();
+        int i=0;//这是一个变量，用于遍历中缀表达式字符串
+        String str;//做对多位数的拼接
+        char c;//每遍历到一个字符，就放入c
+        do{
+            //如果c是一个非数字，就需要加入到ls中
+            if((c=s.charAt(i))<48||(c=s.charAt(i))>57){
+                ls.add(""+c);
+                i++;//i需要后移
+            }else{//如果是一个数，需要考虑多位数
+                str="";//先将str置成"" '0'[48]->'9'[57]
+                while(i<s.length() && (c=s.charAt(i))>=48 && (c=s.charAt(i))<=57){
+                    str+=c;//拼接
+                    i++;
+                }
+                ls.add(str);
+            }
+        }while (i<s.length());
+        return ls;
     }
 
     //将一个逆波兰表达式，依次将数据跟运算符放入到ArrayList中
