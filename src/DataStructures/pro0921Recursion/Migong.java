@@ -25,6 +25,9 @@ public class Migong {
         //设置挡板,1表示
         map[3][1]=1;
         map[3][2]=1;
+        //map[1][2]=1;
+        //map[2][2]=1;
+
 
         //输出地图
         System.out.println("地图的情况：");
