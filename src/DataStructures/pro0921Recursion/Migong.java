@@ -51,8 +51,6 @@ public class Migong {
             }
             System.out.println();
         }
-
-
     }
 
     //递归回溯来给小球找路
@@ -93,7 +91,7 @@ public class Migong {
         }
     }
 
-    //修改找路的策略：上 右  下  左
+    //修改找路的策略：上->右->下->左
     public static boolean setWay2(int[][] map,int i,int j){
         if(map[6][5]==2){//通路已经找到ok
             return true;
