@@ -1,6 +1,8 @@
 package DataStructures.pro0923Sort;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * @Author DreamYee
@@ -8,8 +10,25 @@ import java.util.Arrays;
  */
 public class InsertSort {
     public static void main(String[] args) {
-        int[] arr={101,34,119,1,-1,89};
+        //int[] arr={101,34,119,1,-1,89};
+
+        //创建要给80000个数据的数组
+        int[] arr=new int[80000];
+        for(int i=0;i<80000;i++){
+            arr[i]=(int)(Math.random()*8000000);//生成一个[0,8000000)数
+        }
+
+        Date date1=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date1Str=simpleDateFormat.format(date1);
+        System.out.println("排序前的时间："+date1Str);
+
         insertSort(arr);
+
+        Date date2=new Date();
+        String date2Str=simpleDateFormat.format(date2);
+        System.out.println("排序后的时间："+date2Str);
+
     }
 
     //插入排序
@@ -29,9 +48,12 @@ public class InsertSort {
                 insertIndex--;
             }
             //当退出while循环时，说明插入的位置找到，insertIndex+1
-            arr[insertIndex+1]=insertVal;
-            System.out.println("第"+i+"轮后：");
-            System.out.println(Arrays.toString(arr));
+            //这里我们判断是否需要赋值
+            if(insertVal+1!=i){
+                arr[insertIndex+1]=insertVal;
+            }
+            //System.out.println("第"+i+"轮后：");
+            //System.out.println(Arrays.toString(arr));
         }
 
 
