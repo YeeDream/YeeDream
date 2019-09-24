@@ -10,7 +10,8 @@ import java.util.Date;
  */
 public class ShellSort {
     public static void main(String[] args) {
-       // int[] arr={8,9,1,7,2,3,5,4,6,0};
+        //int[] arr={8,9,1,7,2,3,5,4,6,0};
+        //shellSort2(arr);
 
         //创建要给80000个数据的数组
         int[] arr=new int[80000];
@@ -23,11 +24,12 @@ public class ShellSort {
         String date1Str=simpleDateFormat.format(date1);
         System.out.println("排序前的时间："+date1Str);
 
-        shellSort(arr);
+        shellSort2(arr);
 
         Date date2=new Date();
         String date2Str=simpleDateFormat.format(date2);
         System.out.println("排序后的时间："+date2Str);
+
     }
 
     //交换法
@@ -97,6 +99,30 @@ public class ShellSort {
         }
         System.out.println("希尔排序3轮后："+Arrays.toString(arr));
         */
+    }
+
+    //对交换式的希尔排序改成移位法
+    public static void shellSort2(int[] arr){
+        int count=0;
+       //增量gap,并逐步的缩小增量
+        for(int gap=arr.length/2;gap>0;gap/=2){
+            //从第gap个元素，逐个对其所在的组进行直接插入排序
+            for(int i=gap;i<arr.length;i++){
+                int j=i;
+                int temp=arr[j];
+                if(arr[j]<arr[j-gap]){
+                    while (j-gap>=0 && temp<arr[j-gap]){
+                        //移动
+                        arr[j]=arr[j-gap];
+                        j -= gap;
+                    }
+                    //当退出while循环时，就给gap找到了插入的位置
+                    arr[j]=temp;
+                }
+            }
+        }
+        //System.out.println("希尔排序第"+(++count)+"轮后:"+Arrays.toString(arr));
+
     }
 
 }
