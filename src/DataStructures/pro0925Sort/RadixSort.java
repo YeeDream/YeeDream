@@ -13,8 +13,8 @@ public class RadixSort {
         //int[] arr={53,3,542,748,14,214};
 
         //创建要给80000个数据的数组
-        int[] arr=new int[800000];
-        for(int i=0;i<800000;i++){
+        int[] arr=new int[8000000];
+        for(int i=0;i<8000000;i++){
             arr[i]=(int)(Math.random()*8000000);//生成一个[0,8000000)数
         }
 
