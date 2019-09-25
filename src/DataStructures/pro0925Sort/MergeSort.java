@@ -1,6 +1,8 @@
 package DataStructures.pro0925Sort;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * @Author DreamYee
@@ -8,11 +10,28 @@ import java.util.Arrays;
  */
 public class MergeSort {
     public static void main(String[] args) {
-        int[] arr={8,4,5,7,1,3,6,2};
+        //int[] arr={8,4,5,7,1,3,6,2};
+
+
+        //创建要给80000个数据的数组
+        int[] arr=new int[800000];
         int[] temp=new int[arr.length];//归并排序需要额外的空间
+        for(int i=0;i<800000;i++){
+            arr[i]=(int)(Math.random()*8000000);//生成一个[0,8000000)数
+        }
+
+        Date date1=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date1Str=simpleDateFormat.format(date1);
+        System.out.println("排序前的时间："+date1Str);
+
         mergeSort(arr,0,arr.length-1,temp);
 
-        System.out.println("归并排序后："+ Arrays.toString(arr));
+        Date date2=new Date();
+        String date2Str=simpleDateFormat.format(date2);
+        System.out.println("排序后的时间："+date2Str);
+
+        //System.out.println("归并排序后："+ Arrays.toString(arr));
     }
 
     //分+合的方法
@@ -40,7 +59,7 @@ public class MergeSort {
      * @param temp  中转数组
      */
     public static void merge(int[] arr,int left,int right,int mid,int[] temp){
-        System.out.println("×××××");//合并的次数
+        //System.out.println("×××××");//合并的次数
         int i = left;//初始化i,左边有序序列的初始索引
         int j=mid+1;//初始化j,右边有序序列的初始索引
         int t=0;//指向temp数组的当前索引
@@ -80,7 +99,7 @@ public class MergeSort {
         int tempLeft=left;//
         //第一次合并时tempLeft=0，right=1  //tempLeft=2，right=3
         // tempLeft=0，right=3  //tempLeft=0，right=7
-        System.out.println("tempLeft="+tempLeft+"\t"+"right="+right);
+        //System.out.println("tempLeft="+tempLeft+"\t"+"right="+right);
         while(tempLeft<=right){
             arr[tempLeft]=temp[t];
             t+=1;
