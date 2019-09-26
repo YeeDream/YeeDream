@@ -11,11 +11,12 @@ import java.util.List;
 //注意：二分查找的前提是该数组是有序的
 public class BinarySearch {
     public static void main(String[] args) {
-        int[] arr={1,8,10,89,1000,1000,1000,1234};
+        //int[] arr={1,8,10,89,1000,1000,1000,1234};
+        int[] arr={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
         //int resIndex=binarySearch(arr,0,arr.length-1,22);
         //System.out.println("resIndex="+resIndex);
 
-        List resIndexList=binarySearch2(arr,0,arr.length-1,1000);
+        List resIndexList=binarySearch2(arr,0,arr.length-1,1);
         System.out.println("resIndexList="+resIndexList);
     }
 
@@ -57,6 +58,8 @@ public class BinarySearch {
      * 4.将ArrayList返回
      */
     public static List<Integer> binarySearch2(int[] arr, int left, int right, int findVal){
+        System.out.println("hello~");
+
         //当left>right时，说明递归整个数组，但是没有找到
         if(left>right){
             return new ArrayList<Integer>();
