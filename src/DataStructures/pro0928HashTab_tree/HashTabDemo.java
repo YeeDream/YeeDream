@@ -1,4 +1,4 @@
-package DataStructures.pro0928HashTab;
+package DataStructures.pro0928HashTab_tree;
 import java.util.Scanner;
 /**
  * @Author DreamYee
