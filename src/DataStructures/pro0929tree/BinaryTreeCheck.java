@@ -7,21 +7,22 @@ package DataStructures.pro0929tree;
 public class BinaryTreeCheck {
     public static void main(String[] args) {
         //先需要创建一颗二叉树
-        BinaryTree binaryTree = new BinaryTree();
+        BinaryTree2 binaryTree2 = new BinaryTree2();
         //创建需要的节点
-        HeroNode root = new HeroNode(1, "宋江");
-        HeroNode node2 = new HeroNode(2, "吴用");
-        HeroNode node3 = new HeroNode(3, "卢俊义");
-        HeroNode node4 = new HeroNode(4, "林冲");
-        HeroNode node5 = new HeroNode(5, "关胜");
+        HeroNode2 root = new HeroNode2(1, "宋江");
+        HeroNode2 node2 = new HeroNode2(2, "吴用");
+        HeroNode2 node3 = new HeroNode2(3, "卢俊义");
+        HeroNode2 node4 = new HeroNode2(4, "林冲");
+        HeroNode2 node5 = new HeroNode2(5, "关胜");
 
         //说明，我们先手动创建二叉树，后面会学习以递归的方式创建二叉树
         root.setLeft(node2);
         root.setRight(node3);
         node3.setRight(node4);
         node3.setLeft(node5);
-        binaryTree.setRoot(root);
+        binaryTree2.setRoot(root);
 
+        /*
         System.out.println("前序遍历：");//1 2 3 5 4
         binaryTree.preOrder();
 
@@ -30,6 +31,16 @@ public class BinaryTreeCheck {
 
         System.out.println("后序遍历：");//2 5 4 3 1
         binaryTree.postOrder();
+        */
+
+        //前序遍历查找
+        System.out.println("前序遍历查找方式：");
+        HeroNode2 resNode=binaryTree2.postOrderSearch(5);
+        if(resNode!=null){
+            System.out.printf("找到了，信息为no=%d, name=%s",resNode.getNo(),resNode.getName());
+        }else{
+            System.out.printf("没有找到no=%d的英雄！",5);
+        }
 
     }
 }
@@ -97,8 +108,8 @@ class BinaryTree2{
 class HeroNode2{
     private int no;
     private String name;
-    private HeroNode left;
-    private HeroNode right;
+    private HeroNode2 left;
+    private HeroNode2 right;
 
     public HeroNode2(int no, String name) {
         this.no = no;
@@ -121,19 +132,19 @@ class HeroNode2{
         this.name = name;
     }
 
-    public HeroNode getLeft() {
+    public HeroNode2 getLeft() {
         return left;
     }
 
-    public void setLeft(HeroNode left) {
+    public void setLeft(HeroNode2 left) {
         this.left = left;
     }
 
-    public HeroNode getRight() {
+    public HeroNode2 getRight() {
         return right;
     }
 
-    public void setRight(HeroNode right) {
+    public void setRight(HeroNode2 right) {
         this.right = right;
     }
 
