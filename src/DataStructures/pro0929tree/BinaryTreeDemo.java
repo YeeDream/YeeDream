@@ -13,20 +13,22 @@ public class BinaryTreeDemo {
         HeroNode node2=new HeroNode(2,"吴用");
         HeroNode node3=new HeroNode(3,"卢俊义");
         HeroNode node4=new HeroNode(4,"林冲");
+        HeroNode node5=new HeroNode(5,"关胜");
 
         //说明，我们先手动创建二叉树，后面会学习以递归的方式创建二叉树
         root.setLeft(node2);
         root.setRight(node3);
         node3.setRight(node4);
+        node3.setLeft(node5);
         binaryTree.setRoot(root);
 
-        System.out.println("前序遍历：");
+        System.out.println("前序遍历：");//1 2 3 5 4
         binaryTree.preOrder();
 
-        System.out.println("中序遍历：");
+        System.out.println("中序遍历：");//2 1 5 3 4
         binaryTree.infixOrder();
 
-        System.out.println("后序遍历：");
+        System.out.println("后序遍历：");//2 5 4 3 1
         binaryTree.postOrder();
 
     }
