@@ -36,31 +36,31 @@ public class BinaryTreeCheck {
         //前序遍历查找
         //前序遍历的次数:4
         System.out.println("前序遍历查找方式：");
-        HeroNode2 resNode=binaryTree2.preOrderSearch(5);
+        HeroNode2 resNode=binaryTree2.preOrderSearch(2);
         if(resNode!=null){
             System.out.printf("找到了，信息为no=%d, name=%s",resNode.getNo(),resNode.getName());
         }else{
-            System.out.printf("没有找到no=%d的英雄！",5);
+            System.out.printf("没有找到no=%d的英雄！",2);
         }
         System.out.println();
 
         //中序遍历的次数:3
         System.out.println("中序遍历查找方式：");
-        HeroNode2 resNode1=binaryTree2.infixOrderSearch(5);
+        HeroNode2 resNode1=binaryTree2.infixOrderSearch(2);
         if(resNode1!=null){
             System.out.printf("找到了，信息为no=%d, name=%s",resNode.getNo(),resNode.getName());
         }else{
-            System.out.printf("没有找到no=%d的英雄！",5);
+            System.out.printf("没有找到no=%d的英雄！",2);
         }
         System.out.println();
 
         //后序遍历的次数:2
         System.out.println("后序遍历查找方式：");
-        HeroNode2 resNode2=binaryTree2.postOrderSearch(5);
+        HeroNode2 resNode2=binaryTree2.postOrderSearch(2);
         if(resNode2!=null){
             System.out.printf("找到了，信息为no=%d, name=%s",resNode.getNo(),resNode.getName());
         }else{
-            System.out.printf("没有找到no=%d的英雄！",5);
+            System.out.printf("没有找到no=%d的英雄！",2);
         }
 
     }
