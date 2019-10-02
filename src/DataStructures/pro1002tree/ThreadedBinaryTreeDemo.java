@@ -21,6 +21,7 @@ public class ThreadedBinaryTreeDemo {
         node2.setRight(node5);
         node3.setLeft(node6);
 
+
         //中序线索化
         ThreadedBinaryTree threadedBinaryTree=new ThreadedBinaryTree();
         threadedBinaryTree.setRoot(root);
@@ -34,25 +35,53 @@ public class ThreadedBinaryTreeDemo {
         HeroNode rightNode=node5.getRight();
         System.out.println("10号节点的后继节点：");
         System.out.println(rightNode);
+
+        System.out.println("使用线索化的方式遍历线索化二叉树:");
+        threadedBinaryTree.threadedList();
     }
 }
 
 //定义ThreadedBinaryTree实现了线索化功能的二叉树
-class ThreadedBinaryTree{
+class ThreadedBinaryTree {
     private HeroNode root;
 
     //为了实现线索化，需要创建要给指向当前节点的前驱节点的操作
     //在递归进行线索化时，pre总是保留前一个节点
-    private HeroNode pre=null;
+    private HeroNode pre = null;
 
     public void setRoot(HeroNode root) {
         this.root = root;
     }
 
     //重载
-    public void threadedNode(){
+    public void threadedNode() {
         this.threadedNode(root);
     }
+
+    //遍历线索化二叉树的方法
+    public void threadedList() {
+        //定义一个变量，存储当前遍历的节点，从root开始
+        HeroNode node = root;
+        while (node!=null){
+            //后面随着遍历而变化，因为当leftType==1时，说明该节点是按照线索化处理后的有效节点
+            // 处理后的有效节点
+            while (node.getLeftType() == 0) {
+                node = node.getLeft();
+            }
+            //打印当前这个节点
+            System.out.println(node);
+            //如果当前节点的右指针指向的是后继节点，就一直输出
+            while (node.getRightType() == 1) {
+                //获取当前节点的后继节点
+                node = node.getRight();
+                System.out.println(node);
+            }
+            //替换这个遍历的节点
+            node = node.getRight();
+        }
+
+    }
+
 
     //编写对二叉树进行中序线索化的方法
 
@@ -165,5 +194,19 @@ class HeroNode {
                 "no=" + no +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    //中序遍历
+    public void infixOrder(){
+        //递归向左子树中序遍历
+        if(this.left!=null){
+            this.left.infixOrder();
+        }
+        //输出父节点
+        System.out.println(this);
+        //递归向右子树中序遍历
+        if(this.right!=null){
+            this.right.infixOrder();
+        }
     }
 }
