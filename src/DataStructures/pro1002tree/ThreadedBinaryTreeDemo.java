@@ -91,31 +91,6 @@ class ThreadedBinaryTree{
         //3.线索化右子树
         threadedNode(node.getRight());
     }
-
-    //前序遍历
-    public void preOrder(){
-        if(this.root!=null){
-            this.root.preOrder();
-        }else{
-            System.out.println("当前二叉树为空，无法遍历");
-        }
-    }
-
-    public void infixOrder(){
-        if(this.root!=null){
-            this.root.infixOrder();
-        }else{
-            System.out.println("当前二叉树为空，无法遍历");
-        }
-    }
-
-    public void postOrder(){
-        if(this.root!=null){
-            this.root.postOrder();
-        }else{
-            System.out.println("当前二叉树为空，无法遍历");
-        }
-    }
 }
 
 //创建HeroNode节点
@@ -190,41 +165,5 @@ class HeroNode {
                 "no=" + no +
                 ", name='" + name + '\'' +
                 '}';
-    }
-
-    //编写前序遍历
-    public void preOrder(){
-        System.out.println(this);//先输出父节点
-        //递归向左子树前序遍历
-        if(this.left!=null){
-            this.left.preOrder();
-        }
-        //递归此向右子树前序遍历
-        if(this.right!=null){
-            this.right.preOrder();
-        }
-    }
-    //中序遍历
-    public void infixOrder(){
-        //递归向左子树中序遍历
-        if(this.left!=null){
-            this.left.infixOrder();
-        }
-        //输出父节点
-        System.out.println(this);
-        //递归向右子树中序遍历
-        if(this.right!=null){
-            this.right.infixOrder();
-        }
-    }
-    //后序遍历
-    public void postOrder(){
-        if(this.left!=null){
-            this.left.postOrder();
-        }
-        if(this.right!=null){
-            this.right.postOrder();
-        }
-        System.out.println(this);
     }
 }
