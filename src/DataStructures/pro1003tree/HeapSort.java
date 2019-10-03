@@ -1,6 +1,8 @@
 package DataStructures.pro1003tree;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * @Author DreamYee
@@ -9,8 +11,25 @@ import java.util.Arrays;
 public class HeapSort {
     public static void main(String[] args) {
         //要求将数组进行升序
-        int[] arr={4,6,8,5,9};
+        //int[] arr={4,6,8,5,9};
+
+        //创建要给80000个数据的数组
+        int[] arr=new int[80000];
+        for(int i=0;i<80000;i++){
+            arr[i]=(int)(Math.random()*8000000);//生成一个[0,8000000)数
+        }
+
+        Date date1=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date1Str=simpleDateFormat.format(date1);
+        System.out.println("排序前的时间："+date1Str);
+
         heapSort(arr);
+
+        Date date2=new Date();
+        String date2Str=simpleDateFormat.format(date2);
+        System.out.println("排序后的时间："+date2Str);
+
     }
 
     //编写一个堆排序的方法
@@ -36,7 +55,7 @@ public class HeapSort {
             arr[0]=temp;
             adjustHeap(arr,0,j);
         }
-        System.out.println("数组："+Arrays.toString(arr));
+//        System.out.println("数组："+Arrays.toString(arr));
     }
 
     //将一个数组（二叉树），调整成一个大顶堆
