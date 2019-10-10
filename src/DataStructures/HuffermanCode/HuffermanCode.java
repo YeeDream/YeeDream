@@ -45,6 +45,22 @@ public class HuffermanCode {
         return huffermanCodes;
     }
 
+    /*
+    //编写一个方法，将字符串对应的byte[]数组，通过生成的赫夫曼编码，返回一个赫夫曼编码压缩后的byte[]
+
+    /**
+     *
+     * @param bytes  原始的字符串对应的byte[]
+     * @param huffermanCodes   生成的赫夫曼编码
+     * @return  返回赫夫曼编码处理后的byte[]
+     * huffermanCodeBytes[0] = 10101000(补码) ==> byte[推导10101000 =>10101000(反码)-1 =>10100111]
+
+    private static byte[] zip(byte[] bytes,Map<Byte,String> huffermanCodes){
+
+    }
+    */
+
+    //生成赫夫曼对应的赫夫曼编码
     /**
      * 功能：将传入的node节点的所有叶子结点的赫夫曼编码得到，并放入到huffermanCodes集合
      * @param node  传入节点
