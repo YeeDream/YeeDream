@@ -6,7 +6,7 @@ package DataStructures.BST;
  */
 public class BinarySortTreeDemo {
     public static void main(String[] args) {
-        int[] array={7,3,10,12,5,1,9,2};
+        int[] array={7,3,10,12,5,1,9,0};
         BinarySortTree binarySortTree=new BinarySortTree();
         //循环的添加节点到二叉排序树
         for(int i=0;i<array.length;i++){
@@ -18,10 +18,14 @@ public class BinarySortTreeDemo {
         binarySortTree.infixOrder();
 
         //测试删除叶子结点
-        binarySortTree.delNode(2);
-        binarySortTree.delNode(12);
+        //binarySortTree.delNode(2);
+
+        //删除有一颗子树的节点
+        binarySortTree.delNode(1);
+
         System.out.println("删除节点后：");
         binarySortTree.infixOrder();
+
     }
 }
 
@@ -73,6 +77,24 @@ class BinarySortTree{
                     parent.left=null;
                 }else if(parent.right!=null&&parent.right.value==value){//targetNode是parent的右子节点
                     parent.right=null;
+                }
+            }else if(targetNode.left!=null&&targetNode.right!=null){//删除有两颗子树的节点
+
+            }else {//删除有一颗子树的节点
+                //如果要删除的节点有左子节点
+                if(targetNode.left!=null){
+                    //如果targetNode是parent的左子节点
+                    if(parent.left.value==value){
+                        parent.left=targetNode.left;
+                    }else {//targetNode是parent的右子节点
+                        parent.right=targetNode.left;
+                    }
+                }else{//如果要删除的节点有右子节点
+                    if(parent.left.value==value){//targetNode是parent的左子节点
+                        parent.left=targetNode.right;
+                    }else {//targetNode是parent的右子节点
+                        parent.right=targetNode.right;
+                    }
                 }
             }
         }
