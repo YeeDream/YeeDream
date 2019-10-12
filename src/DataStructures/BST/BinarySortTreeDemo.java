@@ -6,7 +6,7 @@ package DataStructures.BST;
  */
 public class BinarySortTreeDemo {
     public static void main(String[] args) {
-        int[] array={7,3,10,12,5,1,9,0};
+        int[] array={7,3,10,12,5,1,9};
         BinarySortTree binarySortTree=new BinarySortTree();
         //循环的添加节点到二叉排序树
         for(int i=0;i<array.length;i++){
@@ -24,8 +24,16 @@ public class BinarySortTreeDemo {
         //binarySortTree.delNode(1);
 
         //删除有两个子节点的树
+        binarySortTree.delNode(2);
+        binarySortTree.delNode(5);
+        binarySortTree.delNode(9);
+        binarySortTree.delNode(12);
         binarySortTree.delNode(7);
+        binarySortTree.delNode(3);
+        binarySortTree.delNode(10);
+        binarySortTree.delNode(1);
 
+        System.out.println("root="+binarySortTree.getRoot());
         System.out.println("删除节点后：");
         binarySortTree.infixOrder();
 
@@ -35,6 +43,10 @@ public class BinarySortTreeDemo {
 //创建二叉排序树
 class BinarySortTree{
     private Node root;
+
+    public Node getRoot() {
+        return root;
+    }
 
     //查找要删除的结点
     public Node search(int value){
@@ -107,17 +119,25 @@ class BinarySortTree{
             }else {//删除有一颗子树的节点
                 //如果要删除的节点有左子节点
                 if(targetNode.left!=null){
-                    //如果targetNode是parent的左子节点
-                    if(parent.left.value==value){
-                        parent.left=targetNode.left;
-                    }else {//targetNode是parent的右子节点
-                        parent.right=targetNode.left;
+                    if(parent!=null) {
+                        //如果targetNode是parent的左子节点
+                        if (parent.left.value == value) {
+                            parent.left = targetNode.left;
+                        } else {//targetNode是parent的右子节点
+                            parent.right = targetNode.left;
+                        }
+                    }else {
+                        root=targetNode.left;
                     }
                 }else{//如果要删除的节点有右子节点
-                    if(parent.left.value==value){//targetNode是parent的左子节点
-                        parent.left=targetNode.right;
-                    }else {//targetNode是parent的右子节点
-                        parent.right=targetNode.right;
+                    if(parent!=null) {
+                        if (parent.left.value == value) {//targetNode是parent的左子节点
+                            parent.left = targetNode.right;
+                        } else {//targetNode是parent的右子节点
+                            parent.right = targetNode.right;
+                        }
+                    }else {
+                        root=targetNode.right;
                     }
                 }
             }
