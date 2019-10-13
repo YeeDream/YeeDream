@@ -6,7 +6,8 @@ package DataStructures.AVL_平衡二叉树;
  */
 public class AVLTreeDemo {
     public static void main(String[] args) {
-        int[] arr={4,3,6,5,7,8};
+        //int[] arr={4,3,6,5,7,8};
+        int[] arr={10,12,8,9,7,6};
         //创建一个AVLTree对象
         AVLTree avlTree=new AVLTree();
         //添加节点
@@ -25,7 +26,7 @@ public class AVLTreeDemo {
         System.out.println("平衡处理后：");
         System.out.println("树的左子树的高度："+avlTree.getRoot().leftHeight());
         System.out.println("树的右子树的高度："+avlTree.getRoot().rightHeight());
-
+        System.out.println(avlTree.getRoot());
     }
 }
 
@@ -199,6 +200,16 @@ class Node{
         left=newNode;
     }
 
+    //右旋转
+    public void rightRotate(){
+        Node newNode=new Node(value);
+        newNode.right=right;
+        newNode.left=left.right;
+        value=left.value;
+        left=left.left;
+        right=newNode;
+    }
+
     //查找要删除的结点
 
     /**
@@ -280,6 +291,11 @@ class Node{
         //当添加完一个节点后，如果：（右子树的高度-左子树的高度）>1,左旋转
         if(rightHeight()-leftHeight()>1){
             leftRotate();//左旋转
+        }
+
+        //当添加完一个节点后，如果：（左子树的高度-右子树的高度）>1,右旋转
+        if(leftHeight()-rightHeight()>1){
+            rightRotate();
         }
     }
 
