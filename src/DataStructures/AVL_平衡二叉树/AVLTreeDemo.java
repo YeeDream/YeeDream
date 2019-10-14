@@ -290,12 +290,32 @@ class Node{
 
         //当添加完一个节点后，如果：（右子树的高度-左子树的高度）>1,左旋转
         if(rightHeight()-leftHeight()>1){
-            leftRotate();//左旋转
+            //如果它的右子树的左子树高度大于它的右子树的右子树的高度
+            if(right!=null&&right.leftHeight()>right.rightHeight()){
+                right.rightRotate();
+                //先对右子节点进行右旋转
+                right.leftRotate();
+                //然后对当前节点进行左旋转
+                leftRotate();
+            }else {
+                //直接进行左旋转
+                leftRotate();
+            }
+            return;//必须要！！！！！
         }
 
         //当添加完一个节点后，如果：（左子树的高度-右子树的高度）>1,右旋转
         if(leftHeight()-rightHeight()>1){
-            rightRotate();
+            //左子树的右子树的高度大于它的左子树的高度
+            if(left!=null&&left.rightHeight()>left.leftHeight()){
+                //先对当前节点的左结点（左子树）->左旋转
+                left.leftRotate();
+                rightRotate();
+            }else {
+                //直接进行右旋转
+                rightRotate();
+            }
+
         }
     }
 
