@@ -2,6 +2,7 @@ package DataStructures.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * @Author DreamYee
@@ -17,28 +18,48 @@ public class Graph {
 
     public static void main(String[] args) {
         //测试
-        int n=5;//节点的个数
-        String Vertex[]={"A","B","C","D","E"};
+        int n=8;//节点的个数
+        //String Vertex[]={"A","B","C","D","E"};
+        String Vertex[]= {"1","2","3","4","5","6","7","8"};
         //创建图对象
-        Graph graph=new Graph(n);
+       Graph graph=new Graph(n);
         //循环添加结点
         for(String vertex:Vertex){
             graph.insertVertex(vertex);
         }
         //添加边
         //A-B,A-C,B-C,B-D,B-E
+        /*
         graph.insertEdge(0,1,1);//A-B
         graph.insertEdge(0,2,1);//
         graph.insertEdge(1,2,1);
         graph.insertEdge(1,3,1);
         graph.insertEdge(1,4,1);
+        */
+
+        //更新边的关系
+        graph.insertEdge(0,1,1);
+        graph.insertEdge(0,2,1);
+        graph.insertEdge(1,3,1);
+        graph.insertEdge(1,4,1);
+        graph.insertEdge(3,7,1);
+        graph.insertEdge(4,7,1);
+        graph.insertEdge(2,5,1);
+        graph.insertEdge(2,6,1);
+        graph.insertEdge(5,6,1);
 
         //显示邻接矩阵
         graph.showGraph();
 
         //测试深度遍历是否可行
         System.out.println("深度优先遍历：");
-        graph.dfs();
+        graph.dfs();//1->2->4->8->5->3->6->7
+
+        //测试广度遍历是否可行
+        System.out.println("广度优先遍历：");
+        graph.bfs();//1->2->3->4->5->6->7->8
+
+
     }
 
     //构造器
@@ -97,10 +118,54 @@ public class Graph {
 
     //对dfs进行重载,遍历所有的节点，并进行dfs
     public void dfs(){
+        isVisited=new boolean[vertexList.size()];
         //遍历所有的节点进行dfs
         for(int i=0;i<getNumofVertex();i++){
             if(!isVisited[i]){
                 dfs(isVisited,i);
+            }
+        }
+    }
+
+    //对一个节点进行广度优先遍历的方法
+    private void bfs(boolean[] isVisited,int i){
+        int u;//表示队列头节点对应的下标
+        int w;//邻接节点w
+        //队列，记录节点访问的顺序
+        LinkedList queue=new LinkedList<>();
+        //访问节点，输出节点信息
+        System.out.print(getValueByIndex(i)+"->");
+        //标记为已访问
+        isVisited[i]=true;
+        //将节点加入队列
+        queue.addLast(i);
+
+        while (!queue.isEmpty()){
+            //取出队列的头节点下标
+            u=(Integer)queue.removeFirst();
+            //得到第一个邻接结点的下标w
+            w=getFirstNeighbor(u);
+            while (w!=-1){//找到
+                //是否访问过
+                if(!isVisited[w]){
+                    System.out.print(getValueByIndex(w)+"->");
+                    //标记已经访问
+                    isVisited[w]=true;
+                    //入队
+                    queue.addLast(w);
+                }
+                //以u为前驱点，找w后面的下一个邻接点
+                w=getNextNeighbor(u,w);//体现出广度优先
+            }
+        }
+    }
+
+    //遍历所有的节点，都进行广度优先搜索
+    public void bfs(){
+        isVisited=new boolean[vertexList.size()];
+        for(int i=0;i<getNumofVertex();i++){
+            if(!isVisited[i]){
+                bfs(isVisited,i);
             }
         }
     }
