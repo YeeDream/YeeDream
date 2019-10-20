@@ -14,6 +14,7 @@ public class KMPAlgorithm {
         int[] next=kmpNext("ABCDABD");//[0,1,2,0]
         System.out.println("next="+ Arrays.toString(next));
 
+
         //String str2="BBC";
         int index=kmpSearch(str1,str2,next);
         System.out.println("index="+index);
