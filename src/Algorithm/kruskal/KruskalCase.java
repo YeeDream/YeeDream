@@ -29,12 +29,7 @@ public class KruskalCase {
         KruskalCase kruskalCase=new KruskalCase(vertexs,matrix);
         //输出构建的
         kruskalCase.print();
-        EData[] edges=kruskalCase.getEdges();
-        System.out.println(Arrays.toString(edges));//没有排序
-        System.out.println();
-        kruskalCase.sortEdges(edges);
-        System.out.println("排序后：");
-        System.out.println(Arrays.toString(edges));
+        kruskalCase.kruskal();
     }
 
     //构造器
@@ -63,6 +58,42 @@ public class KruskalCase {
                 }
             }
         }
+    }
+
+    public void kruskal(){
+        int index=0;//表示最后结果数组的索引
+        int[] ends=new int[edgeNum];//用于保存“已有最小生成树”中的每个顶点在最小生成树中的终点
+        //创建结果数组，保存最后的最小生成树
+        EData[] rets=new EData[edgeNum];
+        //获取图中所有的边的集合，12条边
+        EData[] edges=getEdges();
+        System.out.println("获取图的边的集合"+Arrays.toString(edges)+",共"+edges.length);
+
+        //首先排序，按照边的权值大小（从小到大）
+        sortEdges(edges);
+
+        //遍历edges数组，将边添加到最小生成树中时，判断是准备加入的边是否构成了回路，如果没有，就加入rets,否则不加入
+        for(int i=0;i<edgeNum;i++){
+            //获取到第i条边的第一个顶点
+            int p1=getPosition(edges[i].start);
+            int p2=getPosition(edges[i].end);
+
+            //获取p1这个顶点在已有最小生成树的终点
+            int m=getEnd(ends,p1);//m=4
+            //获取p2这个顶点在已有最小生成树的终点
+            int n=getEnd(ends,p2);//n=5
+            //是否构成回路
+            if(m!=n){//没有构成回路
+                ends[m]=n;//设置m在已有最小生成树中的终点
+                rets[index++]=edges[i];//有一条边加入rets数组
+            }
+        }
+        //统计并打印最小生成树，输出rets数组
+        System.out.println("最小生成树为：");
+        for(int i=0;i<index;i++){
+            System.out.println(rets[i]);
+        }
+
     }
     //测试，打印邻接矩阵
     public void print(){
@@ -157,11 +188,11 @@ class EData{
     //重写toString，便于输出边的信息
     @Override
     public String toString() {
-        return "EData{" +
-                "start=" + start +
-                ", end=" + end +
-                ", weight=" + weight +
-                '}';
+        return "EData[" +
+                "<" + start +
+                "," + end +
+                ">=" + weight +
+                ']';
     }
 }
 
