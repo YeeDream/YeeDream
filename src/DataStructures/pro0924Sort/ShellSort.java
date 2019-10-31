@@ -13,6 +13,7 @@ public class ShellSort {
         //int[] arr={8,9,1,7,2,3,5,4,6,0};
         //shellSort2(arr);
 
+
         //创建要给80000个数据的数组
         int[] arr=new int[80000];
         for(int i=0;i<80000;i++){
@@ -29,6 +30,7 @@ public class ShellSort {
         Date date2=new Date();
         String date2Str=simpleDateFormat.format(date2);
         System.out.println("排序后的时间："+date2Str);
+
 
     }
 
@@ -51,7 +53,7 @@ public class ShellSort {
                     }
                 }
             }
-            //System.out.println("希尔排序第"+(++count)+"轮后:"+Arrays.toString(arr));
+            System.out.println("希尔排序第"+(++count)+"轮后:"+Arrays.toString(arr));
         }
 
         /*
@@ -104,7 +106,7 @@ public class ShellSort {
     //对交换式的希尔排序改成移位法
     public static void shellSort2(int[] arr){
         int count=0;
-       //增量gap,并逐步的缩小增量
+        //增量gap,并逐步的缩小增量
         for(int gap=arr.length/2;gap>0;gap/=2){
             //从第gap个元素，逐个对其所在的组进行直接插入排序
             for(int i=gap;i<arr.length;i++){

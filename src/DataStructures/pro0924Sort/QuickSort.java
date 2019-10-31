@@ -12,6 +12,15 @@ public class QuickSort {
     public static void main(String[] args) {
         //int[] arr={-9,78,0,23,-567,70,900,4561};
 
+        /*
+        int[] arr={ 69,62,89,37,97,17,28,49};
+        System.out.println("排序前的数组："+"\n"+Arrays.toString(arr));
+        System.out.println("排序后的数组：");
+        quickSort(arr,0,arr.length-1);
+        System.out.println(Arrays.toString(arr));
+        */
+
+
         //创建要给800000个数据的数组
         int[] arr=new int[800000];
         for(int i=0;i<800000;i++){
@@ -32,6 +41,7 @@ public class QuickSort {
 
 
         //System.out.println(Arrays.toString(arr));
+
     }
 
     public static void quickSort(int[] arr,int left,int right){

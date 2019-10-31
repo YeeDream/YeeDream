@@ -1,6 +1,7 @@
 package DataStructures.pro0922Sort;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -9,16 +10,16 @@ import java.util.Date;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-       // int[] arr={3,9,-1,10,-2};
+        int[] arr={3,9,-1,10,-2};
 
         //容易理解，展示冒泡排序过程
 
-        /*
+        bubbleSort(arr);
         //测试冒泡排序
         System.out.println("排序前");
         System.out.println(Arrays.toString(arr));
-        */
 
+        /*
         //测试冒泡排序的速度O(n^2)，给80000个数据，测试
         //创建要给80000个数据的数组
         int[] arr=new int[80000];
@@ -40,7 +41,7 @@ public class BubbleSort {
 
         //System.out.println("排序后");
         //System.out.println(Arrays.toString(arr));
-
+*/
         /*
         //2.第二趟：把第二大的数排在倒数第二位
         for(int j=0;j<arr.length-1-1;j++){
@@ -95,8 +96,8 @@ public class BubbleSort {
                     arr[j+1]=temp;
                 }
             }
-            //System.out.println("第"+(i+1)+"趟排序后的数组：");
-            //System.out.println(Arrays.toString(arr));
+            System.out.println("第"+(i+1)+"趟排序后的数组：");
+            System.out.println(Arrays.toString(arr));
 
             if(flag==false){//说明在一趟排序中，一次交换都没有发生过
                 break;
